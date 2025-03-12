@@ -10,19 +10,8 @@ jobs:
       with:
         submodules: 'true'
 
-    - name: Install host Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: 6.8.2
-        host: 'mac'
-        target: 'desktop'
-        arch: 'clang_64'
-        modules: 'qtshadertools'
-        dir: '${{ runner.temp }}'
-        install-deps: 'true'
-
     - name: Install Qt
-      uses: jurplel/install-qt-action@v4
+      uses: jdpurcell/install-qt-action@v5
       with:
         version: 6.8.2
         host: 'mac'
@@ -37,9 +26,8 @@ jobs:
 
     - name: Configure
       run: ${{ env.QT_ROOT_DIR }}/bin/qt-cmake -B build -G Ninja
-                            -DQT_HOST_PATH=${{ env.QT_ROOT_DIR }}/../macos/
-                            -DQt6LinguistTools_DIR=${{ env.QT_ROOT_DIR }}/../macos/lib/cmake/Qt6LinguistTools
-                            -DQt6ShaderToolsTools_DIR=${{ env.QT_ROOT_DIR }}/../macos/lib/cmake/Qt6ShaderToolsTools || cmake -B build
+                            -DQt6LinguistTools_DIR=${{ env.QT_HOST_PATH }}/lib/cmake/Qt6LinguistTools
+                            -DQt6ShaderToolsTools_DIR=${{ env.QT_HOST_PATH }}/lib/cmake/Qt6ShaderToolsTools || cmake -B build
 
     - name: Build
       # run: xcodebuild build -project qmlcreator.xcodeproj -configuration Release -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO -scheme qmlcreator -archivePath qmlcreator.xcarchive archive
