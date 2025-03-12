@@ -19,7 +19,8 @@ jobs:
         arch: 'ios'
         modules: 'qtshadertools'
         dir: '${{ runner.temp }}'
-        install-deps: 'true'
+        install-deps: true
+        cache: true
         use-naqt: true
         setup-python: false
 
