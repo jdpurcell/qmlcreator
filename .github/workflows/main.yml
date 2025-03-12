@@ -21,6 +21,8 @@ jobs:
         dir: '${{ runner.temp }}'
         install-deps: true
         cache: false
+        use-naqt: true
+        setup-python: false
 
     - name: I'm sorry, github, i have no choice
       run: sudo rm -r /usr/local/lib/android/sdk/platforms/android-35*
