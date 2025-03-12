@@ -20,6 +20,7 @@ jobs:
         modules: 'qtshadertools'
         dir: '${{ runner.temp }}'
         install-deps: 'true'
+        aqtversion: '==3.1.*'
 
     - name: Install ninja
       run: brew install ninja
