@@ -18,6 +18,7 @@ jobs:
         target: 'desktop'
         arch: 'clang_64'
         modules: 'qtshadertools'
+        autodesktop: false
         dir: '${{ runner.temp }}'
         use-naqt: true
         setup-python: false
@@ -30,6 +31,7 @@ jobs:
         target: 'ios'
         arch: 'ios'
         modules: 'qtshadertools'
+        autodesktop: false
         dir: '${{ runner.temp }}'
         use-naqt: true
         setup-python: false
@@ -79,6 +81,7 @@ jobs:
         target: 'desktop'
         arch: 'linux_gcc_64'
         modules: 'qtshadertools'
+        autodesktop: false
         dir: '${{ runner.temp }}'
         install-deps: 'true'
         use-naqt: true
@@ -92,6 +95,7 @@ jobs:
         target: 'android'
         arch: 'android_arm64_v8a'
         modules: 'qtshadertools'
+        autodesktop: false
         dir: '${{ runner.temp }}'
         use-naqt: true
         setup-python: false
