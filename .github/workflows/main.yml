@@ -10,43 +10,32 @@ jobs:
       with:
         submodules: 'true'
 
-    - name: Install host Qt
-      uses: jurplel/install-qt-action@v4
+    - name: Install Host Qt
+      uses: jdpurcell/install-qt-action@v5
       with:
-        version: 6.8.*
+        version: 6.8.2
         host: 'mac'
         target: 'desktop'
         arch: 'clang_64'
         modules: 'qtshadertools'
         dir: '${{ runner.temp }}'
-        install-deps: 'true'
-        cache: true
+        use-naqt: true
+        setup-python: false
 
     - name: Install Qt
-      uses: jurplel/install-qt-action@v4
+      uses: jdpurcell/install-qt-action@v5
       with:
-        version: 6.8.*
+        version: 6.8.2
         host: 'mac'
         target: 'ios'
         arch: 'ios'
         modules: 'qtshadertools'
         dir: '${{ runner.temp }}'
-        install-deps: 'true'
-        cache: true
+        use-naqt: true
+        setup-python: false
 
     - name: Install ninja
       run: brew install ninja
-
-    # - name: Build ecm
-    #   run: |
-    #     git clone https://invent.kde.org/frameworks/extra-cmake-modules ${{ runner.temp }}/ecm
-    #     cd ${{ runner.temp }}/ecm
-    #     git checkout v6.5.0
-    #     cmake .
-    #     cmake --build .
-    #     cmake --install . --prefix ${{ env.QT_ROOT_DIR }}/
-
-    - run: ls ${{ env.QT_ROOT_DIR }}/../macos/lib/cmake/
 
     - name: Configure
       run: ${{ env.QT_ROOT_DIR }}/bin/qt-cmake -B build -G Ninja
@@ -83,20 +72,20 @@ jobs:
         submodules: 'true'
 
     - name: Install Host Qt
-      uses: jurplel/install-qt-action@v4
+      uses: jdpurcell/install-qt-action@v5
       with:
         version: 6.8.2
         host: 'linux'
         target: 'desktop'
         arch: 'linux_gcc_64'
         modules: 'qtshadertools'
-        tools: 'tools_ninja tools_cmake'
         dir: '${{ runner.temp }}'
         install-deps: 'true'
-        cache: true
-          
+        use-naqt: true
+        setup-python: false
+
     - name: Install Qt
-      uses: jurplel/install-qt-action@v4
+      uses: jdpurcell/install-qt-action@v5
       with:
         version: 6.8.2
         host: 'linux'
@@ -104,21 +93,8 @@ jobs:
         arch: 'android_arm64_v8a'
         modules: 'qtshadertools'
         dir: '${{ runner.temp }}'
-        install-deps: 'true'
-        cache: true
-
-    - run: ls /usr/local/lib/android/sdk/platforms/android-35-ext14/
-    - run: ls /usr/local/lib/android/sdk/platforms/
-    - run: ls /usr/local/lib/android/
-
-    # - name: Build ecm
-    #   run: |
-    #     git clone https://invent.kde.org/frameworks/extra-cmake-modules ${{ runner.temp }}/ecm
-    #     cd ${{ runner.temp }}/ecm
-    #     git checkout v6.5.0
-    #     cmake .
-    #     cmake --build .
-    #     cmake --install . --prefix ${{ env.QT_ROOT_DIR }}/
+        use-naqt: true
+        setup-python: false
 
     - name: I'm sorry, github, i have no choice
       run: sudo rm -r /usr/local/lib/android/sdk/platforms/android-35*
