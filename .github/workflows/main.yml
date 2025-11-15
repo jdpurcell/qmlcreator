@@ -74,6 +74,9 @@ jobs:
         setup-python: false
 
     - name: I'm sorry, github, i have no choice
+      run: sudo rm -r /usr/local/lib/android/sdk/platforms/android-36*
+
+    - name: I'm sorry, github, i have no choice
       run: sudo rm -r /usr/local/lib/android/sdk/platforms/android-35*
 
     - name: Configure
